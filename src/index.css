@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+::selection {
+    @apply bg-customYellow text-custom;
+  }
