@@ -1,39 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Logo from '../assets/logo.png';
 
 export function Footer() {
   return (
-    <footer className="w-full bg-white p-8">
-      <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-white text-center md:justify-between">
+    <footer className="w-full bg-stone-900 p-8">
+      <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-stone-900 text-center md:justify-between">
         <img src={Logo} alt="crypto flux logo" className=" w-16" />
         <nav aria-label="Footer">
           <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
             <li>
-              <Link
+              <NavLink
                 to='/'
-                className=" font-semibold transition-colors hover:text-yellow-500 focus:text-yellow-500"
-                aria-label="About Us"
+                className={({isActive}) => `font-semibold transition-colors text-black dark:text-white hover:text-yellow-500  ${isActive ? "dark:text-customYellow text-customYellow" : ""}`}
+                aria-label="home"
               >
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to='/comparison'
-                className="font-semibold transition-colors hover:text-yellow-500 focus:text-yellow-500"
-                aria-label="License"
+                className={({isActive}) => `font-semibold transition-colors text-black dark:text-white hover:text-yellow-500  ${isActive ? "dark:text-customYellow text-customYellow" : ""}`}
+                aria-label="comparison"
               >
                 Comparison
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to='/explore'
-                className="font-semibold transition-colors hover:text-yellow-500 focus:text-yellow-500"
-                aria-label="Contribute"
+                className={({isActive}) => `font-semibold transition-colors text-black dark:text-white hover:text-yellow-500  ${isActive ? "dark:text-customYellow text-customYellow" : ""}`}
+                aria-label="Explore"
               >
                 Explore
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>
@@ -41,7 +41,7 @@ export function Footer() {
       <hr className="my-8 border-blue-gray-50" />
       <Link
         to='/'
-        className="text-center font-normal"
+        className="text-center font-normal text-white"
         aria-label="Crypto Flux Homepage"
       >
         &copy; 2024 Crypto Flux

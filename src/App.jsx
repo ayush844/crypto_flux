@@ -10,7 +10,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className='scrollbar scrollbar-thumb-customYellow scrollbar-track-custom h-[100vh] overflow-y-scroll'>
+    <div className='scrollbar scrollbar-thumb-customYellow scrollbar-track-custom h-[100vh] overflow-y-scroll bg-gradient-to-r from-zinc-800 to-stone-900'>
       <Header />
         <Routes>
           <Route path='/' element={<Home />} />
