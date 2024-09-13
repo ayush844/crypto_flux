@@ -8,6 +8,7 @@ import Home from './pages/Home'
 import Comparison from './pages/Comparsion'
 import Explore from './pages/Explore'
 import NotFound from './pages/404'
+import CoinPage from './pages/CoinPage'
 
 function App() {
 
@@ -18,7 +19,8 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/comparison' element={<Comparison />} />
           <Route path='/explore' element={<Explore />} />
-
+          <Route path='/coin/:id' element={<CoinPage />} />
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       <Footer />
