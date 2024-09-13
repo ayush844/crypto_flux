@@ -40,30 +40,31 @@ const Header = () => {
                 <div className={`items-center justify-between ${isMenuOpen ? 'block' : 'hidden'} w-full md:flex md:w-auto md:order-1`} id="navbar-cta">
                     <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-stone-900 md:dark:bg-stone-900 dark:border-gray-700">
                         <li>
-                            <NavLink
-                                to="/"
-                                className={({ isActive }) =>
-                                    `block text-lg md:text-xl py-2 px-3 md:p-0 rounded md:bg-transparent text-black dark:text-white md:hover:text-customYellow ${
-                                      isActive ? "dark:text-customYellow text-customYellow" : ""
-                                    }`
-                                }
-                                aria-current="page"
+                        <NavLink
+                            to="/"
+                            className={({ isActive }) =>
+                                isActive
+                                ? "block text-lg md:text-xl py-2 px-3 md:p-0 rounded md:bg-transparent text-customYellow dark:text-customYellow"
+                                : "block text-lg md:text-xl py-2 px-3 md:p-0 rounded md:bg-transparent text-black dark:text-white md:hover:text-customYellow"
+                            }
+                            aria-current="page"
                             >
                                 Home
                             </NavLink>
+
                         </li>
                         <li>
-                            <NavLink
-                                to="/comparison"
-                                className={({ isActive }) =>
-                                    `block text-lg md:text-xl py-2 px-3 md:p-0 rounded md:bg-transparent text-black dark:text-white md:hover:text-customYellow ${
-                                      isActive ? "dark:text-customYellow text-customYellow" : ""
-                                    }`
-                                }
-                                aria-current="page"
-                            >
-                                Comparison
-                            </NavLink>
+                        <NavLink
+                        to="/comparison"
+                        className={({ isActive }) =>
+                            isActive
+                            ? "block text-lg md:text-xl py-2 px-3 md:p-0 rounded md:bg-transparent text-customYellow dark:text-customYellow"
+                            : "block text-lg md:text-xl py-2 px-3 md:p-0 rounded md:bg-transparent text-black dark:text-white md:hover:text-customYellow"
+                        }
+                        aria-current="page"
+                        >
+                            Comparison
+                        </NavLink>
                         </li>
                     </ul>
                 </div>

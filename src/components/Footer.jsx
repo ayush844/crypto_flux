@@ -9,31 +9,46 @@ export function Footer() {
         <nav aria-label="Footer">
           <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
             <li>
-              <NavLink
-                to='/'
-                className={({isActive}) => `font-semibold transition-colors text-black dark:text-white hover:text-yellow-500  ${isActive ? "dark:text-customYellow text-customYellow" : ""}`}
-                aria-label="home"
-              >
-                Home
-              </NavLink>
+            <NavLink
+              to='/'
+              className={({ isActive }) =>
+                isActive
+                  ? "font-semibold transition-colors text-customYellow dark:text-customYellow hover:text-yellow-500"
+                  : "font-semibold transition-colors text-black dark:text-white hover:text-yellow-500"
+              }
+              aria-label="home"
+            >
+              Home
+            </NavLink>
+
             </li>
             <li>
-              <NavLink
-                to='/comparison'
-                className={({isActive}) => `font-semibold transition-colors text-black dark:text-white hover:text-yellow-500  ${isActive ? "dark:text-customYellow text-customYellow" : ""}`}
-                aria-label="comparison"
-              >
-                Comparison
-              </NavLink>
+            <NavLink
+              to='/comparison'
+              className={({ isActive }) =>
+                isActive
+                  ? "font-semibold transition-colors text-customYellow dark:text-customYellow hover:text-yellow-500"
+                  : "font-semibold transition-colors text-black dark:text-white hover:text-yellow-500"
+              }
+              aria-label="comparison"
+            >
+              Comparison
+            </NavLink>
+
             </li>
             <li>
-              <NavLink
-                to='/explore'
-                className={({isActive}) => `font-semibold transition-colors text-black dark:text-white hover:text-yellow-500  ${isActive ? "dark:text-customYellow text-customYellow" : ""}`}
-                aria-label="Explore"
-              >
-                Explore
-              </NavLink>
+            <NavLink
+              to='/explore'
+              className={({ isActive }) =>
+                isActive
+                  ? "font-semibold transition-colors text-customYellow dark:text-customYellow hover:text-yellow-500"
+                  : "font-semibold transition-colors text-black dark:text-white hover:text-yellow-500"
+              }
+              aria-label="Explore"
+            >
+              Explore
+            </NavLink>
+
             </li>
           </ul>
         </nav>
