@@ -10,23 +10,23 @@ const Header = () => {
     };
 
     return (
-        <nav className="bg-white border-gray-200 dark:bg-stone-900  shadow-md shadow-yellow-400">
+        <nav className=" border-gray-200 bg-stone-900  shadow-md shadow-yellow-400">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src={logo} className=" h-8 md:h-20" alt="cryptoflux Logo" />
-                    <span className="self-center text-xl md:text-3xl font-semibold whitespace-nowrap text-black dark:text-white">
+                    <span className="self-center text-xl md:text-3xl font-semibold whitespace-nowrap text-white">
                         Crypto<span className=' text-customYellow'>Flux</span>
                     </span>
                 </a>
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     <Link to='/explore'>
-                        <button type="button" className="text-black bg-yellow-400 hover:bg-yellow-500 focus:outline-none font-semibold md:text-lg rounded-lg text-sm px-2 py-1 md:px-4 md:py-2 text-center dark:bg-customYellow dark:hover:bg-yellow-400">
+                        <button type="button" className="text-black focus:outline-none font-semibold md:text-lg rounded-lg text-sm px-2 py-1 md:px-4 md:py-2 text-center bg-customYellow hover:bg-yellow-400">
                             Explore
                         </button>
                     </Link>
                     <button
                         type="button"
-                        className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden text-gray-400 hover:bg-gray-700 focus:ring-gray-600"
                         aria-controls="navbar-cta"
                         aria-expanded={isMenuOpen ? "true" : "false"}
                         onClick={toggleMenu}
@@ -38,14 +38,14 @@ const Header = () => {
                     </button>
                 </div>
                 <div className={`items-center justify-between ${isMenuOpen ? 'block' : 'hidden'} w-full md:flex md:w-auto md:order-1`} id="navbar-cta">
-                    <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-stone-900 md:dark:bg-stone-900 dark:border-gray-700">
+                    <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 bg-stone-900 md:bg-stone-900 border-gray-700">
                         <li>
                         <NavLink
                             to="/"
                             className={({ isActive }) =>
                                 isActive
-                                ? "block text-lg md:text-xl py-2 px-3 md:p-0 rounded md:bg-transparent text-customYellow dark:text-customYellow"
-                                : "block text-lg md:text-xl py-2 px-3 md:p-0 rounded md:bg-transparent text-black dark:text-white md:hover:text-customYellow"
+                                ? "block text-lg md:text-xl py-2 px-3 md:p-0 rounded md:bg-transparent text-customYellow "
+                                : "block text-lg md:text-xl py-2 px-3 md:p-0 rounded md:bg-transparent  text-white md:hover:text-customYellow"
                             }
                             aria-current="page"
                             >
@@ -58,8 +58,8 @@ const Header = () => {
                         to="/comparison"
                         className={({ isActive }) =>
                             isActive
-                            ? "block text-lg md:text-xl py-2 px-3 md:p-0 rounded md:bg-transparent text-customYellow dark:text-customYellow"
-                            : "block text-lg md:text-xl py-2 px-3 md:p-0 rounded md:bg-transparent text-black dark:text-white md:hover:text-customYellow"
+                            ? "block text-lg md:text-xl py-2 px-3 md:p-0 rounded md:bg-transparent text-customYellow"
+                            : "block text-lg md:text-xl py-2 px-3 md:p-0 rounded md:bg-transparent text-white md:hover:text-customYellow"
                         }
                         aria-current="page"
                         >

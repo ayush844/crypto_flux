@@ -73,7 +73,7 @@ const HeroSection = () => {
               }}
               src={coins}
               alt="Dashboard image"
-              className=" rounded-3xl md:rounded-t-3xl md:rounded-b-none h-auto object-cover"
+              className=" rounded-3xl md:rounded-t-3xl md:rounded-b-none h-auto object-cover select-none pointer-events-none"
               
             />
           </div>

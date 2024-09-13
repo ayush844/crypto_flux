@@ -13,7 +13,7 @@ import CoinPage from './pages/CoinPage'
 function App() {
 
   return (
-    <div className='scrollbar scrollbar-thumb-customYellow scrollbar-track-custom h-[100vh] overflow-y-scroll bg-gradient-to-r from-zinc-800 to-stone-900'>
+    <div className='scrollbar scrollbar-thumb-customYellow scrollbar-track-custom h-[100vh] overflow-y-scroll bg-gradient-to-r from-zinc-800 to-stone-900 overflow-x-hidden'>
       <Header />
         <Routes>
           <Route path='/' element={<Home />} />

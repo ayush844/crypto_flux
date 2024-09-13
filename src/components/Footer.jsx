@@ -13,8 +13,8 @@ export function Footer() {
               to='/'
               className={({ isActive }) =>
                 isActive
-                  ? "font-semibold transition-colors text-customYellow dark:text-customYellow hover:text-yellow-500"
-                  : "font-semibold transition-colors text-black dark:text-white hover:text-yellow-500"
+                  ? "font-semibold transition-colors text-customYellow hover:text-yellow-500"
+                  : "font-semibold transition-colors text-white hover:text-yellow-500"
               }
               aria-label="home"
             >
@@ -27,8 +27,8 @@ export function Footer() {
               to='/comparison'
               className={({ isActive }) =>
                 isActive
-                  ? "font-semibold transition-colors text-customYellow dark:text-customYellow hover:text-yellow-500"
-                  : "font-semibold transition-colors text-black dark:text-white hover:text-yellow-500"
+                  ? "font-semibold transition-colors text-customYellow hover:text-yellow-500"
+                  : "font-semibold transition-colors text-white hover:text-yellow-500"
               }
               aria-label="comparison"
             >
@@ -41,8 +41,8 @@ export function Footer() {
               to='/explore'
               className={({ isActive }) =>
                 isActive
-                  ? "font-semibold transition-colors text-customYellow dark:text-customYellow hover:text-yellow-500"
-                  : "font-semibold transition-colors text-black dark:text-white hover:text-yellow-500"
+                  ? "font-semibold transition-colors text-customYellow hover:text-yellow-500"
+                  : "font-semibold transition-colors text-white hover:text-yellow-500"
               }
               aria-label="Explore"
             >
