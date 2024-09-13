@@ -7,6 +7,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ListIcon from '@mui/icons-material/List';
 import Grid from './Grid';
+import List from './List';
 
 
 export default function TabsComponenet({coins}) {
@@ -49,15 +50,18 @@ export default function TabsComponenet({coins}) {
           </div>
         </TabPanel>
         <TabPanel value="list">
-          <div>
+          <table className='w-[90%] mx-auto block'>
+            
           {
               coins.map((item, i) => {
                 return (
-                  <p key={i}>{i+1}.{item.id}</p>
+                  
+                    <List coin={item}  key={i} />
+                  
                 )
               })
             }
-          </div>
+          </table>
         </TabPanel>
       </TabContext>
 

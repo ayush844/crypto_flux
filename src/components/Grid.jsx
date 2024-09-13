@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 
 const Grid = ({coin}) => {
   return (
@@ -16,12 +17,12 @@ const Grid = ({coin}) => {
 
         </div>
 
-        <div class="flex justify-start items-center gap-3">
-            <div class={`border-2 ${coin.price_change_percentage_24h > 0 ? "border-green-500 text-green-500 hover:bg-green-500" : "border-red-500 text-red-500 hover:bg-red-500"}  rounded-full px-4 py-1 font-semibold  hover:text-white transition-all duration-300`}>
+        <div className="flex justify-start items-center gap-3">
+            <div className={`border-2 ${coin.price_change_percentage_24h > 0 ? "border-green-500 text-green-500 hover:bg-green-500" : "border-red-500 text-red-500 hover:bg-red-500"}  rounded-full px-4 py-1 font-semibold  hover:text-white transition-all duration-300`}>
                 {coin.price_change_percentage_24h.toFixed(2)}%
             </div>
-            <div class={`border-2 ${coin.price_change_percentage_24h > 0 ? "border-green-500 text-green-500 hover:bg-green-500" : "border-red-500 text-red-500 hover:bg-red-500"} p-1 flex justify-center items-center rounded-full  hover:text-white transition-all duration-300`}>
-                <TrendingUpIcon />
+            <div className={`border-2 ${coin.price_change_percentage_24h > 0 ? "border-green-500 text-green-500 hover:bg-green-500" : "border-red-500 text-red-500 hover:bg-red-500"} p-1 flex justify-center items-center rounded-full  hover:text-white transition-all duration-300`}>
+                {coin.price_change_percentage_24h > 0 ? <TrendingUpIcon /> : <TrendingDownIcon />}
             </div>
         </div>
 
