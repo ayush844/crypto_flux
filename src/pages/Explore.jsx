@@ -3,6 +3,7 @@ import TabsComponenet from "../components/TabsComponenet";
 import axios from "axios";
 import Search from "../components/Search";
 import PaginationComponenet from "../components/Pagination";
+import Loader from "../components/Loader";
 
 const Explore = () => {
 
@@ -13,6 +14,8 @@ const Explore = () => {
     const [search, setSearch] = useState("");
 
     const [page, setPage] = useState(1);
+
+    const [isLoading, setIsLoading] = useState(true);
 
     const onSearchChange = (e)=>{
         setSearch(e.target.value);
@@ -33,19 +36,30 @@ const Explore = () => {
             console.log("response >>> ", res.data);
             setCoins(res.data);
             setPaginatedCoins(res.data.slice(0, 10));
+            setIsLoading(false);
         }).catch((err)=>{
             console.log("ERROR >> ", err);
+            setIsLoading(false);
         })
     }, []);
 
-    return ( <div className="min-h-full">
+    return (
+<>
+    {isLoading ? (
+        <Loader />
+    ) : (
+        <div className="min-h-full">
         <h1>EXPLORE</h1>
         <Search onSearchChange={onSearchChange} search={search} />
         <TabsComponenet coins={search ? filteredCoins : paginatedCoins} />
         {!search && (
             <PaginationComponenet page={page} handleChange={handlePageChange} />
         )}
-    </div> );
+    </div> 
+    )}
+
+</>    
+    );
 }
  
 export default Explore;
