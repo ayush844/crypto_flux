@@ -6,7 +6,7 @@ import { Tooltip } from '@mui/material';
 
 const List = ({coin}) => {
   return (
-    <tr className={`w-[95%] gap-8 md:gap-0 md:w-[100%] px-6 py-2 p-4 mb-2 flex justify-between items-center mx-auto rounded-lg cursor-pointer text-white border-2 border-customYellow hover:bg-gray-900 overflow-x-auto !important m-2 
+    <tr className={`w-[95%] gap-8 md:gap-0 md:w-[100%] px-6 py-2 p-4 mb-2 flex justify-between items-center mx-auto rounded-lg cursor-pointer text-white border-2 border-customYellow bg-[#0F0F0F] hover:bg-gray-900 overflow-x-auto !important m-2 
     ${coin.price_change_percentage_24h >= 0 ? "hover:border-green-500": "hover:border-red-500"}`}>
         <Tooltip title='Coin Info' placement='bottom-start'>
         <td className='flex justify-start items-center gap-4 '>
@@ -41,7 +41,7 @@ const List = ({coin}) => {
 
         <Tooltip title="total volume" placement='bottom-start'>
         <td>
-        <p className="m-0 font-normal text-gray-600 text-sm">
+        <p className="m-0 font-normal text-gray-400 text-sm">
         ${coin.total_volume.toLocaleString()}
         </p>
         </td>
@@ -49,7 +49,7 @@ const List = ({coin}) => {
 
         <Tooltip title="market cap" placement='bottom-start'>
         <td>
-        <p className="m-0 font-normal text-gray-600 text-sm">
+        <p className="m-0 font-normal text-gray-400 text-sm">
         ${coin.market_cap.toLocaleString()}
         </p>
         </td>

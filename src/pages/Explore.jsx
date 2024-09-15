@@ -48,8 +48,7 @@ const Explore = () => {
     {isLoading ? (
         <Loader />
     ) : (
-        <div className="min-h-full">
-        <h1>EXPLORE</h1>
+        <div className="min-h-full pt-10 md:pt-16">
         <Search onSearchChange={onSearchChange} search={search} />
         <TabsComponenet coins={search ? filteredCoins : paginatedCoins} />
         {!search && (
