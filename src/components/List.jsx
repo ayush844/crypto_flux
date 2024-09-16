@@ -2,10 +2,13 @@ import React from 'react'
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import { Tooltip } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 
 const List = ({coin}) => {
   return (
+
+    <Link to={`/coin/${coin.id}`}>  
     <tr className={`w-[95%] gap-8 md:gap-0 md:w-[100%] px-6 py-2 p-4 mb-2 flex justify-between items-center mx-auto rounded-lg cursor-pointer text-white border-2 border-customYellow bg-[#0F0F0F] hover:bg-gray-900 overflow-x-auto !important m-2 
     ${coin.price_change_percentage_24h >= 0 ? "hover:border-green-500": "hover:border-red-500"}`}>
         <Tooltip title='Coin Info' placement='bottom-start'>
@@ -55,6 +58,7 @@ const List = ({coin}) => {
         </td>
         </Tooltip>
     </tr>
+    </Link>
   )
 }
 

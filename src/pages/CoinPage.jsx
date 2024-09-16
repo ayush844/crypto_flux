@@ -4,8 +4,11 @@ import { useParams } from 'react-router-dom'
 import Loader from '../components/Loader';
 import List from '../components/List';
 import CoinInfo from '../components/CoinInfo';
+import LineChart from '../components/LineChart';
 
 const CoinPage = () => {
+
+
 
     const {id} = useParams();
 
@@ -14,6 +17,19 @@ const CoinPage = () => {
     const [error, setError] = useState(false);
 
     const [coin, setCoin] = useState({});
+
+    const [days, setDays] = useState(30);
+    const [priceType, setPriceType] = useState("prices");
+
+  const [chartData, setChartData] = useState({ labels: [], datasets: [{}] });
+
+
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+  
+  
 
     useEffect(()=>{
 
@@ -31,21 +47,25 @@ const CoinPage = () => {
       console.log("Coin DATA>>>>", coinData);
       settingCoinObject(coinData, setCoin);
       if (coinData) {
-        setIsLoading(false);
+        const prices = await getPrices(id, days, priceType, setError);
+        if (prices?.length > 0) {
+          settingChartData(setChartData, prices);
+          setIsLoading(false);
+        }
       }
     }
 
     const settingCoinObject = (data, setCoin) => {
       setCoin({
-        id: data.id,
-        name: data.name,
-        symbol: data.symbol,
-        image: data.image.large,
-        desc: data.description.en,
-        price_change_percentage_24h: data.market_data.price_change_percentage_24h,
-        total_volume: data.market_data.total_volume.usd,
-        current_price: data.market_data.current_price.usd,
-        market_cap: data.market_data.market_cap.usd,
+        id: data?.id,
+        name: data?.name,
+        symbol: data?.symbol,
+        image: data?.image.large,
+        desc: data?.description.en,
+        price_change_percentage_24h: data?.market_data.price_change_percentage_24h,
+        total_volume: data?.market_data.total_volume.usd,
+        current_price: data?.market_data.current_price.usd,
+        market_cap: data?.market_data.market_cap.usd,
       });
     };
 
@@ -72,8 +92,111 @@ const CoinPage = () => {
 
 
 
+  const getPrices = (id, days, priceType, setError) => {
+    const prices = axios
+      .get(
+        `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=${days}&interval=daily`
+      )
+      .then((response) => {
+        if (response.data) {
+          console.log("Prices>>>", response.data);
+          if (priceType == "market_caps") {
+            return response.data.market_caps;
+          } else if (priceType == "total_volumes") {
+            return response.data.total_volumes;
+          } else {
+            return response.data.prices;
+          }
+        }
+      })
+      .catch((e) => {
+        console.log(e.message);
+        if (setError) {
+          setError(true);
+        }
+      });
+  
+    return prices;
+  };
+
+  const gettingDate = (number) => {
+    const date = new Date(number);
+    return date.getDate() + "/" + (date.getMonth() + 1);
+  };
+
+  const settingChartData = (setChartData, prices1, prices2) => {
+    if (prices2) {
+      setChartData({
+        labels: prices1?.map((data) => gettingDate(data[0])),
+        datasets: [
+          {
+            label: "Crypto 1",
+            data: prices1?.map((data) => data[1]),
+            borderWidth: 1,
+            fill: false,
+            backgroundColor: "#ffc83e",
+            tension: 0.25,
+            borderColor: "#ffc83e",
+            pointRadius: 0,
+            yAxisID: "crypto1",
+          },
+          {
+            label: "Crypto 2",
+            data: prices2?.map((data) => data[1]),
+            borderWidth: 1,
+            fill: false,
+            tension: 0.25,
+            borderColor: "#ffc83e",
+            pointRadius: 0,
+            yAxisID: "crypto2",
+          },
+        ],
+      });
+    } else {
+      setChartData({
+        labels: prices1?.map((data) => gettingDate(data[0])),
+        datasets: [
+          {
+            data: prices1?.map((data) => data[1]),
+            borderWidth: 2,
+            fill: true,
+            backgroundColor: "rgba(250, 188, 63,0.2)",
+            tension: 0.25,
+            borderColor: "#ffc83e",
+            pointRadius: 0,
+            yAxisID: "crypto1",
+          },
+        ],
+      });
+    }
+  };
+
+  const handleDaysChange = async (event) => {
+    setIsLoading(true);
+    setDays(event.target.value);
+    const prices = await getPrices(id, event.target.value, priceType, setError);
+    if (prices) {
+      settingChartData(setChartData, prices);
+      setIsLoading(false);
+    }
+  };
+
+  const handlePriceTypeChange = async (event) => {
+    setIsLoading(true);
+    setPriceType(event.target.value);
+    const prices = await getPrices(id, days, event.target.value, setError);
+    if (prices) {
+      settingChartData(setChartData, prices);
+      setIsLoading(false);
+    }
+  };
+
+
+
+
+
   return (
-    <div>
+    <div className=' min-h-[100vh]'>
 
       {
         isLoading ? (
@@ -82,6 +205,7 @@ const CoinPage = () => {
           <div className='p-4 pb-2 rounded-xl w-[90%] block m-6 mx-auto'>
             
             <List coin={coin} />
+            <LineChart chartData={chartData} />
             <CoinInfo  title={coin.name} desc={coin.desc}  />
             <h1>COIN ID IS: {id}</h1>
 

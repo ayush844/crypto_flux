@@ -5,6 +5,7 @@ import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 
 const Grid = ({coin}) => {
   return (
+    <Link to={`/coin/${coin.id}`}>  
     <div className={`flex flex-col gap-3 md:gap-6 w-64 h-80 md:w-80 md:h-80 p-8 bg-stone-900 rounded-lg border-2 border-customYellow cursor-pointer text-white m-2 ${coin.price_change_percentage_24h >= 0 ? "hover:border-green-500": "hover:border-red-500"}`}>
         <div className='flex justify-start items-center gap-4'>
 
@@ -38,6 +39,7 @@ const Grid = ({coin}) => {
         </p>
 
     </div>
+    </Link>
   )
 }
 
