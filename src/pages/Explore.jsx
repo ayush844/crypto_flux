@@ -45,7 +45,7 @@ const Explore = () => {
 
     return (
 <>
-    {isLoading ? (
+    {(isLoading || coins.length == 0)? (
         <Loader />
     ) : (
         <div className="min-h-full pt-10 md:pt-16">

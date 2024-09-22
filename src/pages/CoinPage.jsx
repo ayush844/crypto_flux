@@ -5,6 +5,8 @@ import Loader from '../components/Loader';
 import List from '../components/List';
 import CoinInfo from '../components/CoinInfo';
 import LineChart from '../components/LineChart';
+import SelectDays from '../components/SelectDays';
+import ToggleComponents from '../components/ToggleComponent';
 
 const CoinPage = () => {
 
@@ -19,7 +21,7 @@ const CoinPage = () => {
     const [coin, setCoin] = useState({});
 
     const [days, setDays] = useState(30);
-    const [priceType, setPriceType] = useState("prices");
+    const [priceType, setPriceType] = useState("market_caps");
 
   const [chartData, setChartData] = useState({ labels: [], datasets: [{}] });
 
@@ -74,7 +76,7 @@ const CoinPage = () => {
 
   const getCoinData = (id, setError) => {
     const coin = axios
-      .get(`https://api.coingecko.com/api/v3/coins/${id}`)
+      .get(`https://api.coingecko.com/api/v3/coins/${id}?myapi=CG-Rf8ZBzdirmfSzUZMwRhXFfoS`)
       .then((response) => {
         if (response.data) {
           return response.data;
@@ -95,7 +97,7 @@ const CoinPage = () => {
   const getPrices = (id, days, priceType, setError) => {
     const prices = axios
       .get(
-        `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=${days}&interval=daily`
+        `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=${days}&interval=daily&myapi=CG-Rf8ZBzdirmfSzUZMwRhXFfoS`
       )
       .then((response) => {
         if (response.data) {
@@ -171,6 +173,27 @@ const CoinPage = () => {
     }
   };
 
+  const convertNumber = (number) => {
+  const numberWithCommas = number.toLocaleString();
+  var arr = numberWithCommas.split(",");
+  if (arr.length == 5) {
+    //Trillions
+    return arr[0] + "." + arr[1].slice(0, 2) + "T";
+  } else if (arr.length == 4) {
+    //Billions
+    return arr[0] + "." + arr[1].slice(0, 2) + "B";
+  } else if (arr.length == 3) {
+    // Millions
+    return arr[0] + "." + arr[1].slice(0, 2) + "M";
+  } else if (arr.length == 2) {
+    // Thousands
+    return arr[0] + "." + arr[1].slice(0, 2) + "K";
+  } else {
+    // Hundreds
+    return number.toLocaleString();
+  }
+};
+
   const handleDaysChange = async (event) => {
     setIsLoading(true);
     setDays(event.target.value);
@@ -184,6 +207,7 @@ const CoinPage = () => {
   const handlePriceTypeChange = async (event) => {
     setIsLoading(true);
     setPriceType(event.target.value);
+    console.log(event.target.value);
     const prices = await getPrices(id, days, event.target.value, setError);
     if (prices) {
       settingChartData(setChartData, prices);
@@ -196,7 +220,7 @@ const CoinPage = () => {
 
 
   return (
-    <div className=' min-h-[100vh]'>
+    <div className=' min-h-[80vh]'>
 
       {
         isLoading ? (
@@ -205,9 +229,10 @@ const CoinPage = () => {
           <div className='p-4 pb-2 rounded-xl w-[90%] block m-6 mx-auto'>
             
             <List coin={coin} />
+            <SelectDays days={days} handleDaysChange={handleDaysChange} />
+            <ToggleComponents priceType={priceType} handlePriceTypeChange={handlePriceTypeChange} />
             <LineChart chartData={chartData} />
             <CoinInfo  title={coin.name} desc={coin.desc}  />
-            <h1>COIN ID IS: {id}</h1>
 
           </div>
         )
