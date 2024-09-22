@@ -36,7 +36,6 @@ const Comparison = () => {
         const coins = await get100Coins();
         if (coins) {
           setAllCoins(coins);
-          console.log(coins);
           const data1 = await getCoinData(crypto1);
           const data2 = await getCoinData(crypto2);
           settingCoinObject(data1, setCoin1Data);
@@ -45,7 +44,6 @@ const Comparison = () => {
             // getPrices
             const prices1 = await getPrices(crypto1, days, priceType);
             const prices2 = await getPrices(crypto2, days, priceType);
-            console.log(prices1, prices2)
             settingChartData(setChartData, prices1, prices2);
             setLoading(false);
           }
@@ -64,7 +62,7 @@ const Comparison = () => {
           // fetch prices again
           const prices1 = await getPrices(crypto1, days, priceType);
           const prices2 = await getPrices(newCrypto2, days, priceType);
-          console.log(prices1, prices2);
+          
           settingChartData(setChartData, prices1, prices2);
         } else {
           const newCrypto1 = e.target.value;
@@ -76,7 +74,7 @@ const Comparison = () => {
           // fetch coin prices
           const prices1 = await getPrices(newCrypto1, days, priceType);
           const prices2 = await getPrices(crypto2, days, priceType);
-          console.log(prices1, prices2);
+          
           settingChartData(setChartData, prices1, prices2);
         }
         setLoading(false);
@@ -104,7 +102,6 @@ const Comparison = () => {
             }
           })
           .catch((e) => {
-            console.log(e.message);
             if (setError) {
               setError(true);
             }
@@ -120,7 +117,6 @@ const Comparison = () => {
           )
           .then((response) => {
             if (response.data) {
-              console.log("Prices>>>", response.data);
               if (priceType == "market_caps") {
                 return response.data.market_caps;
               } else if (priceType == "total_volumes") {
@@ -131,7 +127,6 @@ const Comparison = () => {
             }
           })
           .catch((e) => {
-            console.log(e.message);
             if (setError) {
               setError(true);
             }
@@ -144,7 +139,7 @@ const Comparison = () => {
 
 
       const settingChartData = (setChartData, prices1, prices2) => {
-        console.log(prices1, prices2);
+        
         if (prices2) {
           setChartData({
             labels: prices1?.map((data) => gettingDate(data[0])),
@@ -198,11 +193,9 @@ const Comparison = () => {
             "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&myapi=CG-Rf8ZBzdirmfSzUZMwRhXFfoS"
           )
           .then((response) => {
-            console.log("RESPONSE>>>", response.data);
             return response.data;
           })
           .catch((error) => {
-            console.log("ERROR>>>", error.message);
           });
       
         return coins;

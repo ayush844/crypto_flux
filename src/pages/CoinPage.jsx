@@ -46,7 +46,6 @@ const CoinPage = () => {
     const getData = async () => {
       setIsLoading(true);
       let coinData = await getCoinData(id, setError);
-      console.log("Coin DATA>>>>", coinData);
       settingCoinObject(coinData, setCoin);
       if (coinData) {
         const prices = await getPrices(id, days, priceType, setError);
@@ -83,7 +82,6 @@ const CoinPage = () => {
         }
       })
       .catch((e) => {
-        console.log(e.message);
         if (setError) {
           setError(true);
         }
@@ -101,7 +99,6 @@ const CoinPage = () => {
       )
       .then((response) => {
         if (response.data) {
-          console.log("Prices>>>", response.data);
           if (priceType == "market_caps") {
             return response.data.market_caps;
           } else if (priceType == "total_volumes") {
@@ -112,7 +109,6 @@ const CoinPage = () => {
         }
       })
       .catch((e) => {
-        console.log(e.message);
         if (setError) {
           setError(true);
         }
@@ -207,7 +203,6 @@ const CoinPage = () => {
   const handlePriceTypeChange = async (event) => {
     setIsLoading(true);
     setPriceType(event.target.value);
-    console.log(event.target.value);
     const prices = await getPrices(id, days, event.target.value, setError);
     if (prices) {
       settingChartData(setChartData, prices);

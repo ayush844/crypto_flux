@@ -33,12 +33,9 @@ const Explore = () => {
 
     useEffect(()=>{
         axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&myapi=CG-Rf8ZBzdirmfSzUZMwRhXFfoS').then((res) => {
-            console.log("response >>> ", res.data);
             setCoins(res.data);
             setPaginatedCoins(res.data.slice(0, 10));
             setIsLoading(false);
-        }).catch((err)=>{
-            console.log("ERROR >> ", err);
             setIsLoading(false);
         })
     }, []);
